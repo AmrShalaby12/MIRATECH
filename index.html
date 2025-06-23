@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRATECH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<style>
+:root {
+    --primary-color: #9a1e20;
+    --primary-dark: #bb2123;
+    --secondary-color: #1E1C28;
+    --dark-color: #363344;
+    --light-color: #ecf0f1;
+    --gray-color: #95a5a6;
+    --success-color: #2ecc71;
+    --font-primary: 'Tajawal', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: #1E1C28;
+    line-height: 1.6;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #333042;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-header p {
+    color: var(--gray-color);
+    font-size: 18px;
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1E1C28;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #1E1C28;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--dark-color);
+}
+
+.logo img {
+    height: 40px;
+    margin-left: 10px;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    font-weight: 500;
+    color:#fff;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* القسم الرئيسي */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:#1E1C28;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons .btn {
+    margin: 0 10px;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-icon {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 24px;
+    animation: floating 15s infinite linear;
+}
+
+.floating-icon:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-icon:nth-child(2) {
+    top: 70%;
+    left: 80%;
+    animation-delay: 3s;
+    animation-duration: 20s;
+}
+
+.floating-icon:nth-child(3) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 6s;
+    animation-duration: 25s;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-50px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* قسم عن الشركة */
+.about-section {
+    background-color: #f9f9f9;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h3 {
+    font-size: 28px;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.features-list i {
+    color: var(--primary-color);
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* قسم المنتجات */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover::before {
+    transform: scaleX(1);
+}
+
+.product-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--primary-color);
+    font-size: 30px;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .product-icon {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.product-card h3 {
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.product-card p {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+}
+
+/* قسم الإحصائيات */
+.stats-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('stats-bg.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.stat-item {
+    padding: 30px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 18px;
+    color: white;
+}
+
+/* قسم الخدمات */
+.services-tabs {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tab-buttons {
+    display: flex;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px 20px;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--gray-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active::after {
+    width: 100%;
+}
+
+.tab-content {
+    padding: 30px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.service-details {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.service-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.service-image:hover img {
+    transform: scale(1.05);
+}
+
+.service-text {
+    flex: 1;
+}
+
+.service-text h3 {
+    font-size: 24px;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.service-text p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.service-text ul {
+    margin-bottom: 20px;
+}
+
+.service-text ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-right: 20px;
+}
+
+.service-text ul li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+}
+
+/* قسم العملاء */
+.clients-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.client-logo {
+    flex: 0 0 calc(20% - 30px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.client-logo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.client-logo img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.client-logo:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* قسم اتصل بنا */
+.contact-content {
+    display: flex;
+    gap: 40px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.info-text h4 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.info-text p {
+    color: #555;
+}
+
+.contact-form {
+    flex: 1;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* الفوتر */
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 80px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    right: 0;
+}
+
+.footer-col p {
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary-color);
+    padding-right: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    font-family: var(--font-primary);
+}
+
+.newsletter-form button {
+    width: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--primary-dark);
+}
+
+.copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    text-align: center;
+    color: #bbb;
+    font-size: 14px;
+}
+
+/* زر العودة للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-5px);
+}
+
+/* تأثيرات الحركة */
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+}
+
+.animate-slide-up.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.animate-slide-up.delay-2 {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideLeft 0.8s ease forwards;
+}
+
+@keyframes slideLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scaleIn 0.5s ease forwards;
+}
+
+.animate-scale-in.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.animate-scale-in.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.animate-scale-in.delay-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes scaleIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* تصميم متجاوب */
+@media (max-width: 992px) {
+    .about-content, .service-details, .contact-content {
+        flex-direction: column;
+    }
+    
+    .about-image, .service-image {
+        margin-top: 30px;
+    }
+    
+    .client-logo {
+        flex: 0 0 calc(33.333% - 30px);
+    }
+    .nav-links a {
+
+    color: var(--dark-color);
+ 
+}
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 30px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links a {
+
+    color: var(--dark-color);
+
+}
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 18px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .hero-buttons .btn {
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .client-logo {
+        flex: 0 0 calc(50% - 30px);
+    }
+}
+
+@media (max-width: 576px) {
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .client-logo {
+        flex: 0 0 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .tab-buttons {
+        flex-direction: column;
+    }
+    .nav-links a {
+ 
+    color: var(--dark-color);
+
+}
+}
+</style>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="/image-removebg-preview.png" alt="MIRATECH">
+            <span> </span>
+        </a>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#products">Products</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="animate-slide-up">WITH MIRATECH YOU ARE IN SAFE HANDS</h1>
+            <p class="animate-slide-up delay-1">A FIELD WHERE MISTAKES ARE NOT ALLOWED</p>
+            <div class="hero-buttons animate-slide-up delay-2">
+                <a href="#products" class="btn btn-primary">Browse Products</a>
+                <a href="#contact" class="btn btn-secondary">Request Consultation</a>
+            </div>
+        </div>
+    </div>
+    <div class="floating-elements">
+        <div class="floating-icon fire-extinguisher"><i class="fas fa-fire-extinguisher"></i></div>
+        <div class="floating-icon fire-alarm"><i class="fas fa-bell"></i></div>
+        <div class="floating-icon shield"><i class="fas fa-shield-alt"></i></div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <p>SPECIALIZED IN ELECTROMECHANICAL SOLUTIONS MIRATECH
+HAS MANAGED TO BE ONE OF THE LEADING COMPANIES IN
+EGYPT . WITH OUR HIGHLY PROFFESIONAL TEAM OF ENGINEERS AND TECHNICIANS WE CAN SAVE YOUR TIME AND
+MONEY.</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text animate-fade-in">
+                <h3>Over 15 Years of Experience in Protecting Lives and Properties</h3>
+                <p>At MIRATECH, we offer integrated solutions for fire hazards protection, providing the latest fire alarm and detection systems, smart extinguishing devices, and professional installation and maintenance services with the highest standards.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Globally Certified Systems</li>
+                    <li><i class="fas fa-check-circle"></i> Qualified Technical Team</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 Customer Service</li>
+                    <li><i class="fas fa-check-circle"></i> Product Warranty</li>
+                </ul>
+            </div>
+            <div class="about-image animate-slide-left">
+                <img src="/Black and Green Modern Finance Business Report Presentation.png" alt="About the Company">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="products-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Products</h2>
+            <p>Top fire protection systems</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card animate-scale-in">
+                <div class="product-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3>Fire Detection Systems</h3>
+                <p>Advanced early fire detection systems using modern technologies</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="product-card animate-scale-in delay-1">
+                <div class="product-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Alarm Systems</h3>
+                <p>High-quality visual and audio alarm systems for residential and commercial buildings</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="product-card animate-scale-in delay-2">
+                <div class="product-icon">
+                    <i class="fas fa-spray-can"></i>
+                </div>
+                <h3>Extinguishing Systems</h3>
+                <p>Automatic and manual fire extinguishing systems for various types of fires</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="product-card animate-scale-in delay-3">
+                <div class="product-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Surveillance Systems</h3>
+                <p>Integrated surveillance systems to monitor facilities and detect hazards</p>
+                <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- The rest of the content will be updated similarly, keeping structure but translating text -->
+<!-- Clients Section -->
+<!-- <section class="clients-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Clients</h2>
+            <p>We are proud to be trusted by leading companies and institutions</p>
+        </div>
+        <div class="clients-slider">
+            <div class="client-logo"><img src="client1.png" alt="Client"></div>
+            <div class="client-logo"><img src="client2.png" alt="Client"></div>
+            <div class="client-logo"><img src="client3.png" alt="Client"></div>
+            <div class="client-logo"><img src="client4.png" alt="Client"></div>
+            <div class="client-logo"><img src="client5.png" alt="Client"></div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>We are here to help you anytime</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info animate-fade-in">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Address</h4>
+                        <p>MIRATECH Street, Riyadh, Saudi Arabia</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Phone</h4>
+                        <p>+966 11 123 4567</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>info@alsalama.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Working Hours</h4>
+                        <p>Sunday - Thursday: 8 AM - 5 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form animate-slide-left">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select id="service" required>
+                            <option value="">Select a Service</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="installation">Installation</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="other">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>MIRATECH</h4>
+                <p>A leading company in fire protection systems, providing integrated solutions for residential, commercial, and industrial facilities.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Fire Detection Systems</a></li>
+                    <li><a href="#">Alarm Systems</a></li>
+                    <li><a href="#">Extinguishing Systems</a></li>
+                    <li><a href="#">Surveillance Systems</a></li>
+                    <li><a href="#">Safety Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter to receive the latest offers and news</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <p>&copy; 2023 MIRATECH. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- زر العودة للأعلى -->
+    <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // شريط التنقل المتحرك
+    const navbar = document.querySelector('.navbar');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // إغلاق القائمة عند النقر على رابط
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    
+    // زر العودة للأعلى
+    const backToTop = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+    
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // تبويبات الخدمات
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    tabBtns.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            // إزالة النشاط من جميع الأزرار والألواح
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            
+            // إضافة النشاط للزر واللوح المحدد
+            this.classList.add('active');
+            tabPanes[index].classList.add('active');
+        });
+    });
+    
+    // عداد الإحصائيات
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    function animateStats() {
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-count'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const counter = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    clearInterval(counter);
+                    current = target;
+                }
+                stat.textContent = Math.floor(current);
+            }, 16);
+        });
+    }
+    
+    // تفعيل العداد عند التمرير إلى القسم
+    function checkStatsVisibility() {
+        const statsSection = document.querySelector('.stats-section');
+        const sectionTop = statsSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight - 100) {
+            animateStats();
+            window.removeEventListener('scroll', checkStatsVisibility);
+        }
+    }
+    
+    window.addEventListener('scroll', checkStatsVisibility);
+    
+    // نموذج الاتصال
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // هنا يمكنك إضافة كود إرسال النموذج
+        const formData = new FormData(this);
+        
+        // عرض رسالة نجاح
+        alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+        this.reset();
+    });
+    
+    // تفعيل تأثيرات الحركة عند التمرير
+    function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-slide-up, .animate-slide-left, .animate-fade-in, .animate-scale-in');
+        
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementTop < windowHeight - 100) {
+                element.style.animationPlayState = 'running';
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // تفعيل عند التحميل للعناصر المرئية
+    
+    // تحميل الصور بشكل كسول
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('data-src');
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback للمتصفحات التي لا تدعم IntersectionObserver
+        lazyImages.forEach(img => {
+            img.src = img.getAttribute('data-src');
+        });
+    }
+    
+    // إضافة تأثير اهتزاز لعناصر الفائدة عند التمرير إليها
+    const featureItems = document.querySelectorAll('.features-list li');
+    
+    function animateFeatures() {
+        featureItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.transform = 'translateX(-10px)';
+                setTimeout(() => {
+                    item.style.transform = 'translateX(0)';
+                }, 300);
+            }, index * 200);
+        });
+    }
+    
+    // تفعيل تأثيرات العناصر عند التمرير إليها
+    function checkFeaturesVisibility() {
+        const aboutSection = document.querySelector('.about-section');
+        const sectionTop = aboutSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight - 100) {
+            animateFeatures();
+            window.removeEventListener('scroll', checkFeaturesVisibility);
+        }
+    }
+    
+    window.addEventListener('scroll', checkFeaturesVisibility);
+});
+</script>
+</body>
+</html>
